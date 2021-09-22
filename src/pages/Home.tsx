@@ -5,11 +5,24 @@ import { Header } from '../components/Header';
 import { Task, TasksList } from '../components/TasksList';
 import { TodoInput } from '../components/TodoInput';
 
+interface Tasks {
+  id: number,
+  title: string,
+  done: boolean
+}
+
 export function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [newTasks, setNewTasks] = useState('')
 
   function handleAddTask(newTaskTitle: string) {
-    //TODO - add new task
+    const data = {
+      id: new Date().getTime(),
+      done: false,
+      title: newTasks
+    }
+    setNewTasks(oldState => [...oldState, data])
+
   }
 
   function handleToggleTaskDone(id: number) {
